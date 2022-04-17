@@ -10,8 +10,6 @@ def selection_sort(items: List[int]) -> List[int]:
         smallest = items[i]
 
         for j in range(i+1, len(items)):
-            print(i, j, len(items))
-
             if items[j] < smallest:
                 smallest_index = j
                 smallest = items[j]
