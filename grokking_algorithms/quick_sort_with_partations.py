@@ -18,12 +18,14 @@ def partation(items: List[int], low: int, high: int) -> int:
     return i
 
 
-def quick_sort(items: List[int], low: int, high: int):
+def quick_sort(items: List[int], low: int, high: int) -> List[int]:
     if low < high:
         pivot = partation(items, low, high)
 
         quick_sort(items, low, pivot - 1)
         quick_sort(items, pivot + 1, high)
+
+    return items
 
 
 class TestQuickSort(TestCase):
@@ -31,13 +33,11 @@ class TestQuickSort(TestCase):
         items = [5, 3, 6, 2, 10]
         sorted_items = [2, 3, 5, 6, 10]
 
-        quick_sort(items, 0, len(items) - 1)
-        self.assertEqual(items, sorted_items)
+        self.assertEqual(quick_sort(items, 0, len(items) - 1), sorted_items)
 
     def test_empty(self):
         items = []
         sorted_items = []
 
+        self.assertEqual(quick_sort(items, 0, len(items) - 1), sorted_items)
 
-        quick_sort(items, 0, len(items) - 1)
-        self.assertEqual(items, sorted_items)

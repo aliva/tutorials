@@ -7,15 +7,12 @@ from unittest import TestCase
 def selection_sort(items: List[int]) -> List[int]:
     for i in range(len(items)):
         smallest_index = i
-        smallest = items[i]
 
         for j in range(i+1, len(items)):
-            if items[j] < smallest:
+            if items[j] < items[smallest_index]:
                 smallest_index = j
-                smallest = items[j]
 
-        if smallest_index != i:
-            items[i], items[smallest_index] = items[smallest_index], items[i]
+        items[i], items[smallest_index] = items[smallest_index], items[i]
 
     return items
 
