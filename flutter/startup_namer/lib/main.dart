@@ -37,6 +37,7 @@ class RandomWords extends StatefulWidget {
 
 class _RandomWordsState extends State<RandomWords> {
   final _suggestion = <WordPair>[];
+  final _saved = <WordPair>{};
   final _biggerFont = const TextStyle(fontSize: 18);
 
   @override
@@ -53,7 +54,25 @@ class _RandomWordsState extends State<RandomWords> {
         if (index >= _suggestion.length) {
           _suggestion.addAll(generateWordPairs().take(10));
         }
-        return ListTile(title: Text(_suggestion[index].asPascalCase, style: _biggerFont));
+
+        final alreadySaved = _saved.contains(_suggestion[index]);
+        return ListTile(
+          title: Text(_suggestion[index].asPascalCase, style: _biggerFont),
+          trailing: Icon(
+            alreadySaved ? Icons.favorite : Icons.favorite_border,
+            color: alreadySaved ? Colors.red : null,
+            semanticLabel: alreadySaved ? 'Remove from saved' : 'Save',
+          ),
+          onTap: () {
+            setState(() {
+              if (alreadySaved) {
+                _saved.remove(_suggestion[index]);
+              } else {
+                _saved.add(_suggestion[index]);
+              }
+            });
+          },
+        );
       },
     );
   }
