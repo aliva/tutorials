@@ -10,3 +10,9 @@
 ```bash
 python -m unittest grokking_algorithms/*.py
 ```
+
+# Data Structures
+
+```bash
+python -m unittest data_structures/*.py
+```
