@@ -12,19 +12,17 @@ class Node:
 class LinkedList:
     def __init__(self) -> None:
         self._head: Optional[Node] = None
-        self._tail: Optional[Node] = None
 
     def add_node(self, data):
         node = Node(data=data)
 
         if self._head is None:
             self._head = node
-
-        if self._tail is None:
-            self._tail = node
         else:
-            self._tail.next = node
-            self._tail = node
+            current = self._head
+            while current.next is not None:
+                current = current.next
+            current.next = node
 
     def __iter__(self):
         self._current = self._head
